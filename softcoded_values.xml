@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		<record id="action_entity_types" model="ir.actions.act_window">
+            <field name="name">Entity Types</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">softcoded_values.entity.type</field>
+            <field name="view_mode">form,tree</field>
+        </record>
+        <record id="action_enum_values" model="ir.actions.act_window">
+            <field name="name">Enum Values</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">softcoded_values.enum.value</field>
+            <field name="view_mode">form,tree</field>
+        </record>
+        <record id="action_attributes" model="ir.actions.act_window">
+            <field name="name">Attributes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">softcoded_values.attribute</field>
+            <field name="view_mode">form,tree</field>
+        </record>
+        
+        <record id="entity_type_form_view" model="ir.ui.view">
+            <field name="name">entity.type.form</field>
+            <field name="model">softcoded_values.entity.type</field>
+            <field name="arch" type="xml">
+                <form string="Entity Type">
+                <sheet string="Entity Type">
+                	<group>
+						<field name="name"/>
+						<field name="attribute_ids"/>
+					</group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        	
+        <record id="attribute_form_view" model="ir.ui.view">
+            <field name="name">attribute.form</field>
+            <field name="model">softcoded_values.attribute</field>
+            <field name="arch" type="xml">
+                <form string="Attribute">
+                <sheet string="Attribute">
+                	<group colspan="2">
+                		<group>
+							<field name="name"/>
+							<field name="entity_type_id"/>
+							<field name="data_type"/>
+						</group>
+						<group>
+							<field name="max_length"/>
+							<field name="min_multiplicity"/>
+							<field name="max_multiplicity"/>
+							<field name="sequence_number"/>
+						</group>
+					</group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="enum_value_form_view" model="ir.ui.view">
+            <field name="name">enum.value.form</field>
+            <field name="model">softcoded_values.enum.value</field>
+            <field name="arch" type="xml">
+                <form string="Enum Values">
+                <sheet string="Enum Values">
+                	<group colspan="2">
+                		<group>
+							<field name="attribute_id"/>
+						</group>
+						<group>
+							<field name="value_integer"/>
+							<field name="value_decimal"/>
+							<field name="value_string"/>
+							<field name="value_datetime"/>
+						</group>
+					</group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+		<menuitem id="base.menu_softcoded_values" name="Softcoded Values" parent="base.menu_config"
+            sequence="10"/>
+		<menuitem id="menu_entity_type" name="Entity Types" parent="base.menu_softcoded_values"
+            sequence="10" action="action_entity_types"/>
+		<menuitem id="menu_enum_values" name="Enum Values" parent="base.menu_softcoded_values"
+            sequence="30" action="action_enum_values"/>
+		<menuitem id="menu_attributes" name="Attributes" parent="base.menu_softcoded_values"
+            sequence="20" action="action_attributes"/>
+ 	</data>
+</openerp>
